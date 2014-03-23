@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NYTransitionManager.h"
 
-@interface UIViewController (NYBackTransition)
+@interface UIViewController (NYBackTransition) <UIViewControllerTransitioningDelegate>
+
+- (void)presentViewControllerWithBackTransition:(UIViewController *)viewControllerToPresent
+                                     completion:(void (^)(void))completion;
+
+- (void)dismissViewControllerWithBackTransitionCompletion:(void (^)(void))completion;
 
 @end
