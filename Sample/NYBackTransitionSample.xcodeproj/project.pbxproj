@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C24EDC118DE9B4D00009D0F /* NYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C24EDC018DE9B4D00009D0F /* NYMainViewController.m */; };
+		5C24EDC418DEC0DA00009D0F /* NYTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C24EDC318DEC0DA00009D0F /* NYTransitionManager.m */; };
+		5C24EDC718DEC3E100009D0F /* NYModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C24EDC618DEC3E100009D0F /* NYModalViewController.m */; };
 		5CDD78B118DBEA6700BBDB10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDD78B018DBEA6700BBDB10 /* Foundation.framework */; };
 		5CDD78B318DBEA6700BBDB10 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDD78B218DBEA6700BBDB10 /* CoreGraphics.framework */; };
 		5CDD78B518DBEA6700BBDB10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDD78B418DBEA6700BBDB10 /* UIKit.framework */; };
@@ -33,6 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C24EDBF18DE9B4D00009D0F /* NYMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYMainViewController.h; sourceTree = "<group>"; };
+		5C24EDC018DE9B4D00009D0F /* NYMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYMainViewController.m; sourceTree = "<group>"; };
+		5C24EDC218DEC0DA00009D0F /* NYTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTransitionManager.h; sourceTree = "<group>"; };
+		5C24EDC318DEC0DA00009D0F /* NYTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTransitionManager.m; sourceTree = "<group>"; };
+		5C24EDC518DEC3E100009D0F /* NYModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYModalViewController.h; sourceTree = "<group>"; };
+		5C24EDC618DEC3E100009D0F /* NYModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYModalViewController.m; sourceTree = "<group>"; };
 		5CDD78AD18DBEA6700BBDB10 /* NYBackTransitionSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYBackTransitionSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CDD78B018DBEA6700BBDB10 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5CDD78B218DBEA6700BBDB10 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -113,6 +122,10 @@
 			children = (
 				5CDD78BF18DBEA6700BBDB10 /* NYAppDelegate.h */,
 				5CDD78C018DBEA6700BBDB10 /* NYAppDelegate.m */,
+				5C24EDBF18DE9B4D00009D0F /* NYMainViewController.h */,
+				5C24EDC018DE9B4D00009D0F /* NYMainViewController.m */,
+				5C24EDC518DEC3E100009D0F /* NYModalViewController.h */,
+				5C24EDC618DEC3E100009D0F /* NYModalViewController.m */,
 				5CDD78C218DBEA6700BBDB10 /* Images.xcassets */,
 				5CDD78B718DBEA6700BBDB10 /* Supporting Files */,
 			);
@@ -153,6 +166,8 @@
 			children = (
 				5CDD78E018DBEE0500BBDB10 /* UIViewController+NYBackTransition.h */,
 				5CDD78E118DBEE0500BBDB10 /* UIViewController+NYBackTransition.m */,
+				5C24EDC218DEC0DA00009D0F /* NYTransitionManager.h */,
+				5C24EDC318DEC0DA00009D0F /* NYTransitionManager.m */,
 			);
 			name = NYBackTransition;
 			path = ../NYBackTransition;
@@ -254,7 +269,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C24EDC418DEC0DA00009D0F /* NYTransitionManager.m in Sources */,
+				5C24EDC118DE9B4D00009D0F /* NYMainViewController.m in Sources */,
 				5CDD78E218DBEE0500BBDB10 /* UIViewController+NYBackTransition.m in Sources */,
+				5C24EDC718DEC3E100009D0F /* NYModalViewController.m in Sources */,
 				5CDD78BD18DBEA6700BBDB10 /* main.m in Sources */,
 				5CDD78C118DBEA6700BBDB10 /* NYAppDelegate.m in Sources */,
 			);

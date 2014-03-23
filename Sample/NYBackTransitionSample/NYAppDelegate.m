@@ -7,6 +7,7 @@
 //
 
 #import "NYAppDelegate.h"
+#import "NYMainViewController.h"
 
 @implementation NYAppDelegate
 
@@ -16,6 +17,11 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    NYMainViewController *mainViewController = [[NYMainViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    self.window.rootViewController = nav;
+    
     return YES;
 }
 
