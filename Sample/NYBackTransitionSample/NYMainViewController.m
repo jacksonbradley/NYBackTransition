@@ -7,6 +7,8 @@
 //
 
 #import "NYMainViewController.h"
+#import "NYModalViewController.h"
+#import "UIViewController+NYBackTransition.h"
 
 @interface NYMainViewController ()
 
@@ -29,7 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Main";
+    self.title = @"Sample";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     _button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     _button1.frame = CGRectMake(80, 200, 160, 60);
     _button1.layer.cornerRadius = 30.0f;
@@ -61,11 +65,15 @@
 
 - (void)pressButton1
 {
-    
+    NYModalViewController *modalVC = [[NYModalViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:modalVC];
+    [self presentViewControllerWithBackTransition:nav completion:nil];
 }
 
 - (void)pressButton2
 {
+    NYModalViewController *modalVC = [[NYModalViewController alloc] init];
+    [self presentViewControllerWithBackTransition:modalVC completion:nil];
     
 }
 

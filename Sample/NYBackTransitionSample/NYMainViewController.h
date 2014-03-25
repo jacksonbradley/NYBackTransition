@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIViewController+NYBackTransition.h"
 
 @interface NYMainViewController : UIViewController
 

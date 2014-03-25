@@ -24,6 +24,7 @@
     [self dismissViewControllerAnimated:YES completion:completion];
 }
 
+# pragma mark -
 # pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
