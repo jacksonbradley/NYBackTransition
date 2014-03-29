@@ -1,6 +1,6 @@
 # NYBackTransition
 
-NYBackTransition is UIViewController Category and iOS7 Costom Transition.
+NYBackTransition is UIViewController Category and iOS7 Costom Transition.  
 present and dismiss ViewController Transition Animation like Gmail and Twitter.
 
 - *before*
