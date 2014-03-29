@@ -7,6 +7,7 @@
 //
 
 #import "NYModalViewController.h"
+#import "UIViewController+NYBackTransition.h"
 
 @interface NYModalViewController ()
 
@@ -35,11 +36,15 @@
                                                    target:self
                                                    action:@selector(pressCloseButton)];
     self.navigationItem.rightBarButtonItem = _closeButton;
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(pressCloseButton)];
+    [self.view addGestureRecognizer:gesture];
 }
 
 - (void)pressCloseButton
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerWithBackTransitionCompletion:nil];
 }
 
 @end
