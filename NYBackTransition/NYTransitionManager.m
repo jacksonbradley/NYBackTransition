@@ -44,6 +44,8 @@ static const NSTimeInterval kAnimationDuration = 0.3;
 
 @implementation NYTransitionManager
 
+# pragma mark - Initialize
+
 - (id)initWithPresenting:(BOOL)flag
 {
     self = [super init];
@@ -52,6 +54,9 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     }
     return self;
 }
+
+# pragma mark -
+# pragma mark - UIViewControllerAnimatedTransitioning
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
@@ -67,8 +72,14 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     }
 }
 
+# pragma mark - Transition method
+
 - (void)presentTransitionWithTransitionContext:(id<UIViewControllerContextTransitioning>)transitionContext
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // get UIView and UIViewController
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    
     UIView *containerView = [transitionContext containerView];
     containerView.backgroundColor = [UIColor blackColor];
     
@@ -79,14 +90,19 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     UIView *dimmingView = [self dimmingViewWithFrame:containerView.frame];
     [fromViewController.view addSubview:dimmingView];
     
-    toViewController.view.frame = [self invisibleFrame:containerView.frame];
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // prepare
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     
     [containerView insertSubview:toViewController.view
                     aboveSubview:fromViewController.view];
-    
-    [self adjustNavigationBarHeightWithViewController:toViewController];
+    toViewController.view.frame = [self invisibleFrame:containerView.frame];
     
     CATransform3D transform = [self backAnimation];
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // animation
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     
     [UIView animateWithDuration:0.35f
                           delay:0.05f
@@ -109,6 +125,9 @@ static const NSTimeInterval kAnimationDuration = 0.3;
 
 - (void)dismissTransitionWithTransitionContext:(id<UIViewControllerContextTransitioning>)transitionContext
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // get UIView and UIViewController
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     UIView *containerView = [transitionContext containerView];
     containerView.backgroundColor = [UIColor blackColor];
@@ -117,17 +136,23 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    
-    
     UIView *dimmingView = [self searchDimmingViewWithViewController:toViewController];
     
-    toViewController.view.frame = containerView.frame;
-    toViewController.view.layer.transform = [self forwardAnimation];
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // prepare
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     
     [containerView insertSubview:toViewController.view
                     belowSubview:fromViewController.view];
     
+    toViewController.view.frame = containerView.frame;
+    toViewController.view.layer.transform = [self forwardAnimation];
+    
     CGRect invisibleFrame = [self invisibleFrame:containerView.frame];
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // animation
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     
     [UIView animateWithDuration:0.30f
                           delay:0.05f
@@ -150,6 +175,9 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     
 }
 
+# pragma mark -
+# pragma mark - DimminView
+
 - (UIView *)dimmingViewWithFrame:(CGRect)frame
 {
     UIView *dimmingView = [[UIView alloc] initWithFrame:frame];
@@ -169,6 +197,8 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     }
     return dimmingView;
 }
+
+# pragma mark - Helper method
 
 - (BOOL)isUINavigationController:(UIViewController *)viewController
 {
@@ -194,6 +224,8 @@ static const NSTimeInterval kAnimationDuration = 0.3;
                                   navBarFrame.size.height + 20.0f);
     }
 }
+
+# pragma mark - CoreAnimation 3D
 
 - (CATransform3D)backAnimation
 {
