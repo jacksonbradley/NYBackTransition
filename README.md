@@ -15,6 +15,10 @@ present and dismiss ViewController Transition Animation like Gmail and Twitter.
 
 - iOS7
 
+## Version
+
+- 1.0.0
+
 ## Integrate
 
 This library is ARC.
