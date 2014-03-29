@@ -79,24 +79,12 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     UIView *dimmingView = [self dimmingViewWithFrame:containerView.frame];
     [fromViewController.view addSubview:dimmingView];
     
-    // TODO: rename invisibleFrame and method
-    CGRect beforePresentFrame = containerView.frame;
-    beforePresentFrame.origin.y = containerView.frame.size.height;
-    toViewController.view.frame = beforePresentFrame;
+    toViewController.view.frame = [self invisibleFrame:containerView.frame];
     
     [containerView insertSubview:toViewController.view
                     aboveSubview:fromViewController.view];
     
-    // TODO: method
-    if ([toViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *nav = (UINavigationController *)toViewController;
-        UINavigationBar *navBar = nav.navigationBar;
-        CGRect navBarFrame = navBar.frame;
-        navBar.frame = CGRectMake(navBarFrame.origin.x,
-                                 navBarFrame.origin.y,
-                                 navBarFrame.size.width,
-                                 navBarFrame.size.height + 20.0f);
-    }
+    [self adjustNavigationBarHeightWithViewController:toViewController];
     
     CATransform3D transform = [self backAnimation];
     
@@ -121,6 +109,7 @@ static const NSTimeInterval kAnimationDuration = 0.3;
 
 - (void)dismissTransitionWithTransitionContext:(id<UIViewControllerContextTransitioning>)transitionContext
 {
+
     UIView *containerView = [transitionContext containerView];
     containerView.backgroundColor = [UIColor blackColor];
     
@@ -128,25 +117,17 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    // TODO: method
-    UIView *dimmingView;
-    for (UIView *view in toViewController.view.subviews) {
-        if (view.tag == kDimmingViewTag) {
-            dimmingView = view;
-        }
-    }
     
-    // TODO: method
+    
+    UIView *dimmingView = [self searchDimmingViewWithViewController:toViewController];
+    
     toViewController.view.frame = containerView.frame;
-    CATransform3D transform = CATransform3DIdentity;
-    toViewController.view.layer.transform = CATransform3DScale(transform, 0.85f, 0.85f, 1.0f);
+    toViewController.view.layer.transform = [self forwardAnimation];
     
     [containerView insertSubview:toViewController.view
                     belowSubview:fromViewController.view];
     
-    // TODO: method
-    CGRect invisibleFrame = containerView.frame;
-    invisibleFrame.origin.y = containerView.frame.size.height;
+    CGRect invisibleFrame = [self invisibleFrame:containerView.frame];
     
     [UIView animateWithDuration:0.30f
                           delay:0.05f
@@ -178,15 +159,53 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     return dimmingView;
 }
 
+- (UIView *)searchDimmingViewWithViewController:(UIViewController *)viewController
+{
+    UIView *dimmingView = nil;
+    for (UIView *view in viewController.view.subviews) {
+        if (view.tag == kDimmingViewTag) {
+            dimmingView = view;
+        }
+    }
+    return dimmingView;
+}
+
+- (BOOL)isUINavigationController:(UIViewController *)viewController
+{
+    return [viewController isKindOfClass:[UINavigationController class]];
+}
+
+- (CGRect)invisibleFrame:(CGRect)frame
+{
+    CGRect invisibleFrame = frame;
+    invisibleFrame.origin.y = frame.size.height;
+    return invisibleFrame;
+}
+
 - (void)adjustNavigationBarHeightWithViewController:(UIViewController *)viewController
 {
-    
+    if ([self isUINavigationController:viewController]) {
+        UINavigationController *nav = (UINavigationController *)viewController;
+        UINavigationBar *navBar = nav.navigationBar;
+        CGRect navBarFrame = navBar.frame;
+        navBar.frame = CGRectMake(navBarFrame.origin.x,
+                                  navBarFrame.origin.y,
+                                  navBarFrame.size.width,
+                                  navBarFrame.size.height + 20.0f);
+    }
 }
 
 - (CATransform3D)backAnimation
 {
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = 1.0/-500.0;
+    transform = CATransform3DScale(transform, 0.85f, 0.85f, 1.0f);
+    return transform;
+}
+
+- (CATransform3D)forwardAnimation
+{
+    CATransform3D transform = CATransform3DIdentity;
     transform = CATransform3DScale(transform, 0.85f, 0.85f, 1.0f);
     return transform;
 }

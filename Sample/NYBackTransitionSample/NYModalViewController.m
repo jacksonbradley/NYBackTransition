@@ -37,9 +37,9 @@
                                                    action:@selector(pressCloseButton)];
     self.navigationItem.rightBarButtonItem = _closeButton;
     
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                        action:@selector(pressCloseButton)];
-    [self.view addGestureRecognizer:gestureRecognizer];
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(pressCloseButton)];
+    [self.view addGestureRecognizer:gesture];
 }
 
 - (void)pressCloseButton
