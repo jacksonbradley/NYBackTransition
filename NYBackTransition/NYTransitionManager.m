@@ -176,7 +176,7 @@ static const NSTimeInterval kAnimationDuration = 0.3;
 }
 
 # pragma mark -
-# pragma mark - DimminView
+# pragma mark - DimmingView
 
 - (UIView *)dimmingViewWithFrame:(CGRect)frame
 {
