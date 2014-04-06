@@ -11,33 +11,56 @@ present and dismiss ViewController Transition Animation like Gmail and Twitter.
 
 <img src="https://github.com/naoto0822/NYBackTransition/blob/develop/Doc/after.png?raw=true" />
 
-## Requirements
-
-- iOS7
-
 ## Version
 
-- 1.0.0
+- The current version is 1.0.0
+
+## Requirements
+
+- iOS7 and up
+- ARC
 
 ## Integrate
 
-This library is ARC.
-
-- import
+### import
 
 ```
 #import "UIViewController+NYBackTransition.h"
 ```
 
-- present
+### Duration setting
+
+- developer can change parameter of animation duration.
 
 ```
+/*
+
+ define animation duration
+
+ */
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Present Transition Duration
+////////////////////////////////////////////////////////////////////////////////////////////////////
+static const NSTimeInterval kPresentBackTransitionDuration = 0.40f;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Dismiss Transition Duration
+////////////////////////////////////////////////////////////////////////////////////////////////////
+static const NSTimeInterval kDismissBackTransitionDuration = 0.40f;
+```
+
+### present
+
+```
+// example
 [self presentViewControllerWithBackTransition:modalVC completion:nil];
 ```
 
-- dismiss
+### dismiss
 
 ```
+// example
 [self dismissViewControllerWithBackTransitionCompletion:nil];
 ```
 
