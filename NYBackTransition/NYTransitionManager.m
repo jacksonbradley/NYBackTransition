@@ -31,7 +31,14 @@
 
 #import "NYTransitionManager.h"
 
-// TODO: change tag value
+// Present Transition Duration
+
+static const NSTimeInterval kPresentBackTransitionDuration = 0.40f;
+
+// Dismiss Transition Duration
+
+static const NSTimeInterval kDismissBackTransitionDuration = 0.40f;
+
 static const NSUInteger kDimmingViewTag = 100000;
 static const NSTimeInterval kAnimationDuration = 0.3;
 
@@ -104,8 +111,8 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     // animation
     ////////////////////////////////////////////////////////////////////////////////////////////////
     
-    [UIView animateWithDuration:0.35f
-                          delay:0.05f
+    [UIView animateWithDuration:kPresentBackTransitionDuration * 0.875f
+                          delay:kPresentBackTransitionDuration * 0.125f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          fromViewController.view.layer.transform = transform;
@@ -113,8 +120,8 @@ static const NSTimeInterval kAnimationDuration = 0.3;
                      } completion:^(BOOL finished) {
                      }];
     
-    [UIView animateWithDuration:0.30f
-                          delay:0.15f
+    [UIView animateWithDuration:kPresentBackTransitionDuration * 0.75f
+                          delay:kPresentBackTransitionDuration * 0.25f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          toViewController.view.frame = containerView.frame;
@@ -154,16 +161,16 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     // animation
     ////////////////////////////////////////////////////////////////////////////////////////////////
     
-    [UIView animateWithDuration:0.30f
-                          delay:0.05f
+    [UIView animateWithDuration:kDismissBackTransitionDuration * 0.875f
+                          delay:kDismissBackTransitionDuration * 0.125f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          fromViewController.view.frame = invisibleFrame;
                      } completion:^(BOOL finished) {
                      }];
     
-    [UIView animateWithDuration:0.25f
-                          delay:0.10f
+    [UIView animateWithDuration:kDismissBackTransitionDuration * 0.75f
+                          delay:kDismissBackTransitionDuration * 0.25f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          toViewController.view.layer.transform = CATransform3DIdentity;
