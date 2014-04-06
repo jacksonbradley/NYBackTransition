@@ -31,23 +31,43 @@
 
 #import "NYTransitionManager.h"
 
-// Present Transition Duration
+/*
+ 
+ define animation duration
+ 
+ */
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Present Transition Duration
+////////////////////////////////////////////////////////////////////////////////////////////////////
 static const NSTimeInterval kPresentBackTransitionDuration = 0.40f;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // Dismiss Transition Duration
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 static const NSTimeInterval kDismissBackTransitionDuration = 0.40f;
 
+
+/*
+ 
+ dimmingView tag
+ 
+ */
 static const NSUInteger kDimmingViewTag = 100000;
-static const NSTimeInterval kAnimationDuration = 0.3;
+
 
 @interface NYTransitionManager ()
 
-@property (strong, nonatomic) id<UIViewControllerContextTransitioning> transitionContext;
+/*
+ 
+ BOOL
+ presenting flag
+ 
+ */
 @property (nonatomic) BOOL flag;
 
 @end
+
 
 @implementation NYTransitionManager
 
@@ -67,7 +87,11 @@ static const NSTimeInterval kAnimationDuration = 0.3;
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.6f;
+    if (_flag) {
+        return kPresentBackTransitionDuration;
+    } else {
+        return kDismissBackTransitionDuration;
+    }
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
