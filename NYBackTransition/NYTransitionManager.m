@@ -32,9 +32,10 @@
 #import "NYTransitionManager.h"
 
 /*
- 
- define animation duration
- 
+ *
+ * define animation duration
+ * default timeInterval 0.40f
+ *
  */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,10 +49,10 @@ static const NSTimeInterval kPresentBackTransitionDuration = 0.40f;
 static const NSTimeInterval kDismissBackTransitionDuration = 0.40f;
 
 
-/*
- 
- dimmingView tag
- 
+/**
+ *
+ * dimmingView tag
+ *
  */
 static const NSUInteger kDimmingViewTag = 100000;
 
@@ -59,10 +60,10 @@ static const NSUInteger kDimmingViewTag = 100000;
 @interface NYTransitionManager ()
 
 /*
- 
- BOOL
- presenting flag
- 
+ *
+ * BOOL
+ * presenting flag
+ *
  */
 @property (nonatomic) BOOL flag;
 
