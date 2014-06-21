@@ -31,16 +31,44 @@
 
 #import "NYTransitionManager.h"
 
-// TODO: change tag value
+/*
+ *
+ * define animation duration
+ * default timeInterval 0.40f
+ *
+ */
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Present Transition Duration
+////////////////////////////////////////////////////////////////////////////////////////////////////
+static const NSTimeInterval kPresentBackTransitionDuration = 0.40f;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Dismiss Transition Duration
+////////////////////////////////////////////////////////////////////////////////////////////////////
+static const NSTimeInterval kDismissBackTransitionDuration = 0.40f;
+
+
+/**
+ *
+ * dimmingView tag
+ *
+ */
 static const NSUInteger kDimmingViewTag = 100000;
-static const NSTimeInterval kAnimationDuration = 0.3;
+
 
 @interface NYTransitionManager ()
 
-@property (strong, nonatomic) id<UIViewControllerContextTransitioning> transitionContext;
+/*
+ *
+ * BOOL
+ * presenting flag
+ *
+ */
 @property (nonatomic) BOOL flag;
 
 @end
+
 
 @implementation NYTransitionManager
 
@@ -60,7 +88,11 @@ static const NSTimeInterval kAnimationDuration = 0.3;
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.6f;
+    if (_flag) {
+        return kPresentBackTransitionDuration;
+    } else {
+        return kDismissBackTransitionDuration;
+    }
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -104,8 +136,8 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     // animation
     ////////////////////////////////////////////////////////////////////////////////////////////////
     
-    [UIView animateWithDuration:0.35f
-                          delay:0.05f
+    [UIView animateWithDuration:kPresentBackTransitionDuration * 0.875f
+                          delay:kPresentBackTransitionDuration * 0.125f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          fromViewController.view.layer.transform = transform;
@@ -113,8 +145,8 @@ static const NSTimeInterval kAnimationDuration = 0.3;
                      } completion:^(BOOL finished) {
                      }];
     
-    [UIView animateWithDuration:0.30f
-                          delay:0.15f
+    [UIView animateWithDuration:kPresentBackTransitionDuration * 0.75f
+                          delay:kPresentBackTransitionDuration * 0.25f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          toViewController.view.frame = containerView.frame;
@@ -154,16 +186,16 @@ static const NSTimeInterval kAnimationDuration = 0.3;
     // animation
     ////////////////////////////////////////////////////////////////////////////////////////////////
     
-    [UIView animateWithDuration:0.30f
-                          delay:0.05f
+    [UIView animateWithDuration:kDismissBackTransitionDuration * 0.875f
+                          delay:kDismissBackTransitionDuration * 0.125f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          fromViewController.view.frame = invisibleFrame;
                      } completion:^(BOOL finished) {
                      }];
     
-    [UIView animateWithDuration:0.25f
-                          delay:0.10f
+    [UIView animateWithDuration:kDismissBackTransitionDuration * 0.75f
+                          delay:kDismissBackTransitionDuration * 0.25f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          toViewController.view.layer.transform = CATransform3DIdentity;
@@ -176,7 +208,7 @@ static const NSTimeInterval kAnimationDuration = 0.3;
 }
 
 # pragma mark -
-# pragma mark - DimminView
+# pragma mark - DimmingView
 
 - (UIView *)dimmingViewWithFrame:(CGRect)frame
 {
