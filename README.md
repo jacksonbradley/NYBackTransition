@@ -13,7 +13,7 @@ present and dismiss ViewController Transition Animation like Gmail and Twitter.
 
 ## Version
 
-- The current version is 1.0.0
+- The current version is 1.0.1
 
 ## Requirements
 
@@ -34,9 +34,10 @@ present and dismiss ViewController Transition Animation like Gmail and Twitter.
 
 ```
 /*
-
- define animation duration
-
+ *
+ * define animation duration
+ * default timeInterval 0.40f
+ *
  */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
