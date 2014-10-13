@@ -3,13 +3,7 @@
 NYBackTransition is UIViewController Category and iOS7 Costom Transition.  
 present and dismiss ViewController Transition Animation like Gmail and Twitter.
 
-- *before*
-
-<img src="https://github.com/naoto0822/NYBackTransition/blob/develop/Doc/before.png?raw=true" /> . <img src="https://github.com/naoto0822/NYBackTransition/blob/develop/Doc/transition.png?raw=true" />
-
-- *after*
-
-<img src="https://github.com/naoto0822/NYBackTransition/blob/develop/Doc/after.png?raw=true" />
+<img src="Doc/back-transition.gif"/>
 
 ## Version
 
